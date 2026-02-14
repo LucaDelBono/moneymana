@@ -1,29 +1,12 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-  <meta charset="UTF-8">
-  <title>Impostazioni - Gestione Spese</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body.dark-mode {
-      background-color: #121212;
-      color: white;
-    }
-    .dark-mode .card {
-      background-color: #1e1e1e;
-      color: white;
-    }
-  </style>
-</head>
-<body>
+<?php 
+require_once __DIR__ . "/../../../Bootstrap.php";
+$authController = new AuthController;
+$user = $authController->getAuthUser();
+?>
+<?php require_once __DIR__ . "/../partials/header.php"; ?>
+<?php require_once __DIR__ . "/../partials/sidebar.php"; ?>
 
-<nav class="navbar navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a href="home.html" class="navbar-brand">← Home</a>
-  </div>
-</nav>
-
-<div class="container mt-5">
+<div class="content">
   <h2>Impostazioni Account</h2>
 
   <div class="row mt-4">
@@ -64,17 +47,6 @@
       </div>
     </div>
 
-    <!-- Preferenze -->
-    <div class="col-md-6 mb-4">
-      <div class="card shadow p-3">
-        <h5>Preferenze</h5>
-        <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" id="darkModeSwitch">
-          <label class="form-check-label">Modalità Scura</label>
-        </div>
-      </div>
-    </div>
-
     <!-- Eliminazione Account -->
     <div class="col-md-6 mb-4">
       <div class="card shadow p-3 border-danger">
@@ -103,22 +75,6 @@ $("#passwordForm").submit(function(e){
   alert("Password aggiornata!");
 });
 
-// Dark mode
-if(localStorage.getItem("darkMode") === "enabled"){
-  $("body").addClass("dark-mode");
-  $("#darkModeSwitch").prop("checked", true);
-}
-
-$("#darkModeSwitch").change(function(){
-  if($(this).is(":checked")){
-    $("body").addClass("dark-mode");
-    localStorage.setItem("darkMode","enabled");
-  } else {
-    $("body").removeClass("dark-mode");
-    localStorage.setItem("darkMode","disabled");
-  }
-});
-
 // Eliminazione account
 $("#deleteAccount").click(function(){
   if(confirm("Sei sicuro di voler eliminare l'account?")){
@@ -128,6 +84,5 @@ $("#deleteAccount").click(function(){
 });
 
 </script>
+<?php require_once __DIR__ . "/../partials/footer.php"; ?>
 
-</body>
-</html>

@@ -1,3 +1,8 @@
+<?php 
+require_once __DIR__ . "/../../../Bootstrap.php";
+$authController = new AuthController;
+$user = $authController->getAuthUser();
+?>
 <?php require_once __DIR__ . "/../partials/header.php"; ?>
 <?php require_once __DIR__ . "/../partials/sidebar.php"; ?>
 

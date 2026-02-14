@@ -1,19 +1,12 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-  <meta charset="UTF-8">
-  <title>Storico - Gestione Spese</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
+<?php 
+require_once __DIR__ . "/../../../Bootstrap.php";
+$authController = new AuthController;
+$user = $authController->getAuthUser();
+?>
+<?php require_once __DIR__ . "/../partials/header.php"; ?>
+<?php require_once __DIR__ . "/../partials/sidebar.php"; ?>
 
-<nav class="navbar navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a href="home.html" class="navbar-brand">← Home</a>
-  </div>
-</nav>
-
-<div class="container mt-5">
+<div class="content">
   <h2>Storico Anni</h2>
   <div class="list-group mt-4" id="anniList">
   </div>
@@ -32,5 +25,4 @@ anni.forEach(function(anno){
 });
 </script>
 
-</body>
-</html>
+<?php require_once __DIR__ . "/../partials/footer.php"; ?>
