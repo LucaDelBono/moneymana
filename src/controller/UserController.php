@@ -56,7 +56,7 @@ class UserController {
 
     public function update() {
         try{
-            if(!empty($_POST["name"]) && !empty($_POST["surname"]) && !empty($_POST["username"]) && !empty($_POST["email"])){
+            if(!empty($_POST["username"]) && !empty($_POST["email"])){
                 $user = $this->authController->getAuthUser();
                 if($user->getEmail() !== $_POST["email"]){
                     if($this->checkExistEmail()){
@@ -72,59 +72,88 @@ class UserController {
 
                 $data = [
                     "id" => $user->getId(),
-                    "name" => $_POST["name"],
-                    "surname" => $_POST["surname"],
                     "username" => $_POST["username"],
                     "email" => $_POST["email"]
                 ];
 
                 $this->userModel->update($data);
 
-                $_SESSION["flash"] = [
-                    "type" => "success",
-                    "message" => "Dati aggiornati con successo!"
-                ];
+                //$_SESSION["flash"] = [
+                //    "type" => "success",
+                //    "message" => "Dati aggiornati con successo!"
+                //];
                 
             }else{
                 throw new Exception("Compilare correttamente il form!");
             }
         }catch(Exception $e){
-            $_SESSION["flash"] = [
-                "type" => "error",
-                "message" => $e->getMessage()
-            ];
+            //$_SESSION["flash"] = [
+            //    "type" => "error",
+            //    "message" => $e->getMessage()
+            //];
         }
-        header("location: /impostazioni");
+        header("location: /user/impostazioni");
         exit;
     }
 
     public function updatePassword(){
         try{
-            if(!empty($_POST["old_password"]) && !empty($_POST["new_password"])){
+            if(!empty($_POST["old_password"]) && !empty($_POST["password"]) && !empty($_POST["password_confirm"])){
                 $user = $this->authController->getAuthUser();
                 if(password_verify($_POST["old_password"], $user->getPassword())){
-                    $data = [
-                        "id" => $user->getId(),
-                        "password" => password_hash($_POST["new_password"], PASSWORD_DEFAULT)
-                    ];
-                    $this->userModel->updatePassword($data);
-                    $_SESSION["flash"] = [
-                        "type" => "success",
-                        "message" => "Password aggiornata con successo!"
-                    ];
+                    if($_POST["password"] === $_POST["password_confirm"]){
+                        $data = [
+                            "id" => $user->getId(),
+                            "password" => password_hash($_POST["password"], PASSWORD_DEFAULT)
+                        ];
+                        $this->userModel->updatePassword($data);
+                        //$_SESSION["flash"] = [
+                        //    "type" => "success",
+                        //    "message" => "Password aggiornata con successo!"
+                        //];
+                    }else{
+                        throw new Exception("La nuova password non coincide con la conferma!");
+                    }
                 }else{
-                    throw new Exception("Inserire correttamnte la vecchia password!");
+                    throw new Exception("La vecchia password è errata!");
                 }
             }else{
                 throw new Exception("Compilare correttamente il form!");
             }
         }catch(Exception $e){
-            $_SESSION["flash"] = [
-                "type" => "error",
-                "message" => $e->getMessage()
-            ];
+            //$_SESSION["flash"] = [
+            //    "type" => "error",
+            //    "message" => $e->getMessage()
+            //];
         }
-        header("location: /impostazioni");
+        header("location: /user/impostazioni");
+        exit;
+    }
+
+        public function delete(){
+        try{
+            if(!empty($_POST["password"])){
+                $user = $this->authController->getAuthUser();
+                if(password_verify($_POST["password"], $user->getPassword())){
+                    $this->userModel->delete($user->getId());
+                    unset($_SESSION["id"]);
+                    unset($_SESSION["logged"]);
+                    session_destroy();
+                    header("location: /registrazione");
+                    exit;
+                }else{
+                    throw new Exception("La password è errata!");
+                }
+            }else{
+                throw new Exception("Compilare correttamente il form!");
+            }
+        }catch(Exception $e){
+            //$_SESSION["flash"] = [
+            //    "type" => "error",
+            //    "message" => $e->getMessage()
+            //];
+        }
+        header("location: /user/impostazioni");
         exit;
     }
 

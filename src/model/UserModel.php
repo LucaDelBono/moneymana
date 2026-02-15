@@ -30,16 +30,12 @@ class UserModel {
 
     public function update(array $data) :bool{
         $id = $data["id"];
-        $name = $data["name"];
-        $surname = $data["surname"];
         $username = $data["username"];
         $email = $data["email"];
 
-        $query = $this->db->prepare("UPDATE users SET name = :name, surname = :surname, username = :username, email = :email WHERE id = :id");
+        $query = $this->db->prepare("UPDATE users SET username = :username, email = :email WHERE id = :id");
         $params = [
             "id" => $id,
-            "name" => $name,
-            "surname" => $surname,
             "username" => $username,
             "email" => $email
         ];
@@ -62,6 +58,20 @@ class UserModel {
 
         if(!$query->execute($params)){
             throw new Exception("UserModel: error execute query updatePassword");
+        }
+
+        return true;
+    }
+
+    public function delete(int $id) :bool{
+
+        $query = $this->db->prepare("DELETE FROM users WHERE id = :id");
+        $params = [
+            "id" => $id
+        ];
+
+        if(!$query->execute($params)){
+            throw new Exception("UserModel: error execute query delete");
         }
 
         return true;

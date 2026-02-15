@@ -1,88 +1,67 @@
 <?php 
 require_once __DIR__ . "/../../../Bootstrap.php";
 $authController = new AuthController;
+$authController->checkIfUserIsNotLogged();
 $user = $authController->getAuthUser();
 ?>
 <?php require_once __DIR__ . "/../partials/header.php"; ?>
 <?php require_once __DIR__ . "/../partials/sidebar.php"; ?>
+<?php $authController->getDeleteModal(); ?>
 
 <div class="content">
   <h2>Impostazioni Account</h2>
 
   <div class="row mt-4">
 
-    <!-- Profilo -->
     <div class="col-md-6 mb-4">
       <div class="card shadow p-3">
         <h5>Profilo</h5>
-        <form id="profileForm">
+        <form action="/user/update" method="POST">
           <div class="mb-3">
-            <label>Nome</label>
-            <input type="text" class="form-control" value="Mario Rossi">
+            <label>Nome utente</label>
+            <input type="text" name="username" class="form-control" placeholder="mario_rossi" value="<?php echo htmlspecialchars($user->getUsername()); ?>">
           </div>
           <div class="mb-3">
             <label>Email</label>
-            <input type="email" class="form-control" value="mario@email.it">
+            <input type="email" name="email" class="form-control" placeholder="mario.rossi@email.com" value="<?php echo htmlspecialchars($user->getEmail()); ?>">
           </div>
-          <button class="btn btn-primary w-100">Salva Modifiche</button>
+          <button type="submit" class="btn btn-primary w-100">Salva Modifiche</button>
         </form>
       </div>
     </div>
 
-    <!-- Cambio Password -->
+    <div class="col-md-6 mb-4">
+      <div class="card shadow p-3 border-danger">
+        <h5 class="text-danger">Zona Pericolosa</h5>
+        <button type="button" class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteAuthUserModal">
+          Elimina Account
+        </button>
+      </div>
+    </div>
+
     <div class="col-md-6 mb-4">
       <div class="card shadow p-3">
         <h5>Cambia Password</h5>
-        <form id="passwordForm">
+        <form action="/user/update_password" method="POST">
+          <div class="mb-3">
+            <label>Vecchia Password</label>
+            <input type="password" name="old_password" class="form-control" placeholder="****" required>
+          </div>
           <div class="mb-3">
             <label>Nuova Password</label>
-            <input type="password" class="form-control" required>
+            <input type="password" name="password" class="form-control" placeholder="****" required>
           </div>
           <div class="mb-3">
             <label>Conferma Password</label>
-            <input type="password" class="form-control" required>
+            <input type="password" name="password_confirm" class="form-control" placeholder="****" required>
           </div>
           <button class="btn btn-warning w-100">Aggiorna Password</button>
         </form>
       </div>
     </div>
 
-    <!-- Eliminazione Account -->
-    <div class="col-md-6 mb-4">
-      <div class="card shadow p-3 border-danger">
-        <h5 class="text-danger">Zona Pericolosa</h5>
-        <button class="btn btn-danger w-100" id="deleteAccount">
-          Elimina Account
-        </button>
-      </div>
-    </div>
-
   </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script>
-
-// Salva profilo
-$("#profileForm").submit(function(e){
-  e.preventDefault();
-  alert("Profilo aggiornato!");
-});
-
-// Cambio password
-$("#passwordForm").submit(function(e){
-  e.preventDefault();
-  alert("Password aggiornata!");
-});
-
-// Eliminazione account
-$("#deleteAccount").click(function(){
-  if(confirm("Sei sicuro di voler eliminare l'account?")){
-    alert("Account eliminato!");
-    window.location.href = "index.html";
-  }
-});
-
-</script>
 <?php require_once __DIR__ . "/../partials/footer.php"; ?>
 

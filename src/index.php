@@ -19,7 +19,10 @@ $router->get('/user/home', [HomeController::class, 'homePage']);
 $router->get('/user/storico', [HomeController::class, 'historyPage']);
 $router->get('/user/storico_anno', [HomeController::class, 'historyYearPage']);
 $router->get('/user/impostazioni', [HomeController::class, 'settingsPage']);
+$router->post('/user/update', [UserController::class, 'update']);
+$router->post('/user/update_password', [UserController::class, 'updatePassword']);
+$router->post('/user/delete', [UserController::class, 'delete']);
 
-$router->get('/404', [HomeController::class, 'errorPage']);
+$router->get('/error', [HomeController::class, 'errorPage']);
 
 $router->resolve();

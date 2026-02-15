@@ -62,7 +62,40 @@ class AuthController{
 
     public function checkIfUserIsLogged(){
         if(isset($_SESSION["logged"]) && $_SESSION["logged"] === true){
-            header("location: /accedi");
+            header("location: /user/home");
         }
+    }
+
+    public function getDeleteModal(){
+        ?>
+        <div class="modal fade" id="deleteAuthUserModal" tabindex="-1" aria-labelledby="deleteAuthUserModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-danger text-white">
+                        <h5 class="modal-title" id="deleteAuthUserModalLabel">Conferma Eliminazione</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Questa azione è <strong>irreversibile</strong>.</p>
+                        <p>Tutti i tuoi dati verranno eliminati definitivamente.</p>
+                        <form action="/user/delete" method="POST">
+                            <div class="mb-3">
+                                <label>Inserisci la tua password per confermare</label>
+                                <input type="password" name="password" class="form-control" placeholder="****" required>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">
+                                Annulla
+                                </button>
+                                <button type="submit" class="btn btn-danger">
+                                    Elimina definitivamente
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php
     }
 }

@@ -1,6 +1,7 @@
 <?php 
 require_once __DIR__ . "/../../../Bootstrap.php";
 $authController = new AuthController;
+$authController->checkIfUserIsNotLogged();
 $user = $authController->getAuthUser();
 ?>
 <?php require_once __DIR__ . "/../partials/header.php"; ?>
