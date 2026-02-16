@@ -23,6 +23,10 @@ $router->post('/user/update', [UserController::class, 'update']);
 $router->post('/user/update_password', [UserController::class, 'updatePassword']);
 $router->post('/user/delete', [UserController::class, 'delete']);
 
+//ajax
+$router->post('/checkExistEmail', [UserController::class, 'checkExistEmailJson']);
+$router->post('/checkExistUsername', [UserController::class, 'checkExistUsernameJson']);
+
 $router->get('/error', [HomeController::class, 'errorPage']);
 
 $router->resolve();
