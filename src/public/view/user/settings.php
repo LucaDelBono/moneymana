@@ -49,13 +49,14 @@ $user = $authController->getAuthUser();
           </div>
           <div class="mb-3">
             <label>Nuova Password</label>
-            <input type="password" name="password" class="form-control" placeholder="****" required>
+            <input type="password" name="password" id="password" class="form-control" placeholder="****" required>
           </div>
           <div class="mb-3">
             <label>Conferma Password</label>
-            <input type="password" name="password_confirm" class="form-control" placeholder="****" required>
+            <input type="password" name="password_confirm" id="password_confirm" class="form-control" placeholder="****" required>
+            <span id="password_error" class="text-danger"></span>
           </div>
-          <button class="btn btn-warning w-100">Aggiorna Password</button>
+          <button type="submit" id="submit_button" class="btn btn-warning w-100">Aggiorna Password</button>
         </form>
       </div>
     </div>
