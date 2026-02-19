@@ -37,7 +37,7 @@ class AuthController{
             }
         }catch(Exception $e){
             $_SESSION["flash"] = [
-                "type" => "error",
+                "type" => "danger",
                 "message" =>  $e->getMessage()
             ];
 

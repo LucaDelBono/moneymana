@@ -3,7 +3,10 @@ require_once __DIR__ . "/../../Bootstrap.php";
 $authController = new AuthController;
 $authController->checkIfUserIsLogged();
 ?>
-<?php require __DIR__ . "/header.php"; ?>
+<?php 
+require __DIR__ . "/header.php"; 
+echo flashMessage();
+?>
 <div class="container vh-100 d-flex justify-content-center align-items-center">
   <div class="card shadow p-4" style="width: 400px;">
     <h3 class="text-center mb-4">Login</h3>

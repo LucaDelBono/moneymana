@@ -6,7 +6,7 @@ $user = $authController->getAuthUser();
 ?>
 <?php require_once __DIR__ . "/../partials/header.php"; ?>
 <?php require_once __DIR__ . "/../partials/sidebar.php"; ?>
-
+<?php echo flashMessage(); ?>
 <!-- Contenuto principale -->
 <div class="content">
   <h2>Gestione Mese Corrente</h2>

@@ -34,10 +34,10 @@ class UserController {
                 
                 $this->userModel->insert($data);
 
-                //$_SESSION["flash"] = [
-                //    "type" => "success",
-                //    "message" => "registrazione avvenuta con successo!"
-                //];
+                $_SESSION["flash"] = [
+                    "type" => "success",
+                    "message" => "Registrazione avvenuta con successo!"
+                ];
 
                 header("location: /accedi");
                 exit;
@@ -45,10 +45,10 @@ class UserController {
                 throw new Exception("Compilare correttamente il form!");
             }
         }catch(Exception $e){
-            //$_SESSION["flash"] = [
-            //    "type" => "error",
-            //    "message" => $e->getMessage()
-            //];
+            $_SESSION["flash"] = [
+                "type" => "danger",
+                "message" => $e->getMessage()
+            ];
             header("location: /registrazione");
             exit;
         }
@@ -78,19 +78,19 @@ class UserController {
 
                 $this->userModel->update($data);
 
-                //$_SESSION["flash"] = [
-                //    "type" => "success",
-                //    "message" => "Dati aggiornati con successo!"
-                //];
+                $_SESSION["flash"] = [
+                    "type" => "success",
+                    "message" => "Dati aggiornati con successo!"
+                ];
                 
             }else{
                 throw new Exception("Compilare correttamente il form!");
             }
         }catch(Exception $e){
-            //$_SESSION["flash"] = [
-            //    "type" => "error",
-            //    "message" => $e->getMessage()
-            //];
+            $_SESSION["flash"] = [
+                "type" => "danger",
+                "message" => $e->getMessage()
+            ];
         }
         header("location: /user/impostazioni");
         exit;
@@ -107,10 +107,10 @@ class UserController {
                             "password" => password_hash($_POST["password"], PASSWORD_DEFAULT)
                         ];
                         $this->userModel->updatePassword($data);
-                        //$_SESSION["flash"] = [
-                        //    "type" => "success",
-                        //    "message" => "Password aggiornata con successo!"
-                        //];
+                        $_SESSION["flash"] = [
+                            "type" => "success",
+                            "message" => "Password aggiornata con successo!"
+                        ];
                     }else{
                         throw new Exception("La nuova password non coincide con la conferma!");
                     }
@@ -121,10 +121,10 @@ class UserController {
                 throw new Exception("Compilare correttamente il form!");
             }
         }catch(Exception $e){
-            //$_SESSION["flash"] = [
-            //    "type" => "error",
-            //    "message" => $e->getMessage()
-            //];
+            $_SESSION["flash"] = [
+                "type" => "danger",
+                "message" => $e->getMessage()
+            ];
         }
         header("location: /user/impostazioni");
         exit;
@@ -148,10 +148,10 @@ class UserController {
                 throw new Exception("Compilare correttamente il form!");
             }
         }catch(Exception $e){
-            //$_SESSION["flash"] = [
-            //    "type" => "error",
-            //    "message" => $e->getMessage()
-            //];
+            $_SESSION["flash"] = [
+                "type" => "danger",
+                "message" => $e->getMessage()
+            ];
         }
         header("location: /user/impostazioni");
         exit;
