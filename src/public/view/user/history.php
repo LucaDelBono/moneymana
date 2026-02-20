@@ -1,30 +1,29 @@
 <?php 
 require_once __DIR__ . "/../../../Bootstrap.php";
 $authController = new AuthController;
+$yearController = new YearController;
 $authController->checkIfUserIsNotLogged();
 $user = $authController->getAuthUser();
-echo flashMessage();
+$years = $yearController->getAll();
 ?>
-<?php require_once __DIR__ . "/../partials/header.php"; ?>
-<?php require_once __DIR__ . "/../partials/sidebar.php"; ?>
+<?php 
+require_once __DIR__ . "/../partials/header.php";
+require_once __DIR__ . "/../partials/sidebar.php"; 
+echo flashMessage();
+
+?>
 
 <div class="content">
   <h2>Storico Anni</h2>
   <div class="list-group mt-4" id="anniList">
+    <?php
+    foreach($years as $year){ 
+        ?>
+        <a href="storico_anno?year=<?php echo htmlspecialchars($year->getYear()); ?>" class="list-group-item list-group-item-action">
+            <?php echo htmlspecialchars($year->getYear()); ?>
+        </a>
+        <?php
+    }?>
   </div>
 </div>
-
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script>
-let anni = [2024, 2023, 2022, 2021];
-
-anni.forEach(function(anno){
-    $("#anniList").append(
-        `<a href="spese.html?anno=${anno}" class="list-group-item list-group-item-action">
-            ${anno}
-        </a>`
-    );
-});
-</script>
-
 <?php require_once __DIR__ . "/../partials/footer.php"; ?>
