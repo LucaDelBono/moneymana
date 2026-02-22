@@ -21,11 +21,15 @@ class HomeController {
         require __DIR__ . '/../public/view/user/history_year.php';
     }
 
+    public function monthlyExpensesPage(){
+        require __DIR__ . '/../public/view/user/monthly_expenses.php';
+    }
+
     public function settingsPage(){
         require __DIR__ . '/../public/view/user/settings.php';
     }
 
     public function errorPage(){
-        require __DIR__ .  '/../public/view/404.php';
+        require __DIR__ .  '/../public/view/error.php';
     }
 }

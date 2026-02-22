@@ -26,6 +26,22 @@ class YearModel {
         return (bool) false;
     }
 
+    public function getByYear(int $year) :Year|bool{
+        $query = $this->db->prepare("SELECT * FROM years WHERE year = :year");
+        $params = ["year" => $year];
+
+        if(!$query->execute($params)){
+            throw new Exception("YearModel: error execute query " . __METHOD__);
+        }
+
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+        if($row){
+            return new Year($row); 
+        }
+
+        return (bool) false;
+    }
+
     public function getAll() :array{
         $query = $this->db->prepare("SELECT * FROM years");
 

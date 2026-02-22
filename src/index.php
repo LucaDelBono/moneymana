@@ -18,6 +18,7 @@ $router->post('/registrazione', [UserController::class, 'insert']);
 $router->get('/user/home', [HomeController::class, 'homePage']);
 $router->get('/user/storico', [HomeController::class, 'historyPage']);
 $router->get('/user/storico_anno', [HomeController::class, 'historyYearPage']);
+$router->get('/user/spese_mensili', [HomeController::class, 'monthlyExpensesPage']);
 $router->get('/user/impostazioni', [HomeController::class, 'settingsPage']);
 $router->post('/user/update', [UserController::class, 'update']);
 $router->post('/user/update_password', [UserController::class, 'updatePassword']);

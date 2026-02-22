@@ -13,6 +13,10 @@ class YearController {
         return $this->yearModel->getById($id);
     }
 
+    public function getByYear(int $year){
+        return $this->yearModel->getByYear($year);
+    }
+
     public function getAll(){
         return $this->yearModel->getAll();
     }

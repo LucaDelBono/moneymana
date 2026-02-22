@@ -10,7 +10,7 @@
   <hr class="text-secondary">
 
   <a href="/user/home" <?php if($url === "/user/home"){echo "class='active'";} ?>>🏠 Dashboard</a>
-  <a href="/user/storico" <?php if($url === "/user/storico"){echo "class='active'";} ?>>📊 Storico</a>
+  <a href="/user/storico" <?php if($url === "/user/storico" /*todo aggiungere gli altri url*/){echo "class='active'";} ?>>📊 Storico</a>
   <a href="/user/impostazioni" <?php if($url === "/user/impostazioni"){echo "class='active'";} ?>>⚙️ Impostazioni</a>
 
   <div class="mt-auto">
