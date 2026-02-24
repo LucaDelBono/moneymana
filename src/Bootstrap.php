@@ -12,12 +12,15 @@ require_once "controller/HomeController.php";
 require_once "controller/UserController.php";
 require_once "controller/MonthController.php";
 require_once "controller/YearController.php";
+require_once "controller/ExpenseController.php";
 require_once "model/UserModel.php";
 require_once "model/MonthModel.php";
 require_once "model/YearModel.php";
+require_once "model/ExpenseModel.php";
 require_once "entity/User.php";
 require_once "entity/Year.php";
 require_once "entity/Month.php";
+require_once "entity/Expense.php";
 
 CONST MONTHS = [
     "January" => "0", 
