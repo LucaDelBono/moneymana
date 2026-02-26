@@ -5,7 +5,7 @@ $authController->checkIfUserIsNotLogged();
 $user = $authController->getAuthUser();
 ?>
 <?php 
-$idCurrentMonth = MONTHS[date("F")];
+$idCurrentMonth = MONTHS[date("n")];
 $idCurrentYear = YEARS[date("Y")];
 require_once __DIR__ . "/../partials/header.php";
 require_once __DIR__ . "/../partials/sidebar.php";

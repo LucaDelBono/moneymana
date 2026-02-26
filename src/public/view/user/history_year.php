@@ -28,7 +28,7 @@ require_once __DIR__ . "/../partials/sidebar.php";
         <div class="card shadow">
           <div class="card-body text-center">
             <h6><?php echo htmlspecialchars($month->getName()); ?></h6>
-            <a href="spese_mensili?year=<?php echo htmlspecialchars($year)?>&month=<?php echo htmlspecialchars($month->getId()); ?>" class="btn btn-outline-primary btn-sm">
+            <a href="spese_mensili?month=<?php echo htmlspecialchars($month->getId())?>&year=<?php echo htmlspecialchars($year); ?>" class="btn btn-outline-primary btn-sm">
               Visualizza Spese
             </a>
           </div>
