@@ -131,4 +131,14 @@ addEventListener("DOMContentLoaded", (event) => {
             }
         },350)
     });
+
+    $('#deleteExpenseModal').on('show.bs.modal', function (e) {
+        let id = $(e.relatedTarget).data('id');
+        let month = $(e.relatedTarget).data('month');
+        let year = $(e.relatedTarget).data('year');
+
+        $("#deleteExpenseModal #id").val(id);
+        $("#deleteExpenseModal #month").val(month);
+        $("#deleteExpenseModal #year").val(year);
+    });
 })

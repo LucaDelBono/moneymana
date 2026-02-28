@@ -26,6 +26,7 @@ $router->post('/user/delete', [UserController::class, 'delete']);
 
 //expese
 $router->post('/user/spese_mensili/insert', [ExpenseController::class, 'insert']);
+$router->post('/user/spese_mensili/delete', [ExpenseController::class, 'delete']);
 
 //ajax
 $router->post('/checkExistEmail', [UserController::class, 'checkExistEmailJson']);

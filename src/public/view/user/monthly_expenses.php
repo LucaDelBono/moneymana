@@ -27,6 +27,7 @@ $total = 0;
 <?php 
 require_once __DIR__ . "/../partials/header.php";
 require_once __DIR__ . "/../partials/sidebar.php";
+$expenseController->getDeleteModal();
 echo flashMessage(); 
 ?>
 
@@ -60,7 +61,13 @@ echo flashMessage();
       <div class="card spesa-card shadow">
         <div class="card-body d-flex justify-content-between align-items-center">
           <span><?php echo htmlspecialchars($expense->getDescription()) . " - " . htmlspecialchars(round( $expense->getImport(),2)) . "€"; ?></span>
-          <button class="btn btn-sm btn-danger" >Elimina</button>
+          <button class="btn btn-sm btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteExpenseModal" 
+                  data-id="<?php echo htmlspecialchars($expense->getId()); ?>"
+                  data-month="<?php echo htmlspecialchars($month->getId()); ?>"
+                  data-year="<?php echo htmlspecialchars($year); ?>"
+                  >
+            Elimina
+          </button>
         </div>
       </div>
       <?php
