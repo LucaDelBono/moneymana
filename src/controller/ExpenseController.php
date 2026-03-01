@@ -88,7 +88,7 @@ class ExpenseController {
                     </div>
                     <div class="modal-body">
                         <p>Questa azione è <strong>irreversibile</strong>.</p>
-                        <p>La spesa verrà eliminata definitivamente.</p>
+                        <p>La spesa verrà eliminata.</p>
                         <form action="/user/spese_mensili/delete" method="POST">
                             <input type="hidden" id="id" name="id">
                             <input type="hidden" id="month" name="month">
@@ -98,7 +98,7 @@ class ExpenseController {
                                 Annulla
                                 </button>
                                 <button type="submit" class="btn btn-danger">
-                                    Elimina definitivamente
+                                    Elimina
                                 </button>
                             </div>
                         </form>

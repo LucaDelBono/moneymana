@@ -1,7 +1,6 @@
 <?php 
 require_once __DIR__ . "/../../../Bootstrap.php";
 $authController = new AuthController;
-$yearController = new YearController;
 $monthController = new MonthController;
 $expenseController = new ExpenseController;
 $authController->checkIfUserIsNotLogged();
