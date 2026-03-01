@@ -80,8 +80,8 @@ class AuthController{
                         <p>Tutti i tuoi dati verranno eliminati definitivamente.</p>
                         <form action="/user/delete" method="POST">
                             <div class="mb-3">
-                                <label>Inserisci la tua password per confermare</label>
-                                <input type="password" name="password" class="form-control" placeholder="****" required>
+                                <label>Inserisci la tua password per confermare:</label>
+                                <input type="password" name="password" class="form-control" placeholder="********" required>
                             </div>
                             <div class="d-flex justify-content-end">
                                 <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">

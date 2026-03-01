@@ -18,7 +18,7 @@ echo flashMessage();
       </div>
       <div class="mb-3">
         <label>Password</label>
-        <input type="password" name="password" class="form-control" placeholder="****" required>
+        <input type="password" name="password" class="form-control" placeholder="********" required>
       </div>
       <button type="submit" class="btn btn-primary w-100">Accedi</button>
     </form>

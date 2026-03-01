@@ -22,11 +22,11 @@ $authController->getDeleteModal();
         <form action="/user/update" method="POST">
           <div class="mb-3">
             <label>Nome utente</label>
-            <input type="text" name="username" class="form-control" placeholder="mario_rossi" value="<?php echo htmlspecialchars($user->getUsername()); ?>">
+            <input type="text" name="username" class="form-control" placeholder="mario_rossi" value="<?php echo htmlspecialchars($user->getUsername()); ?>" required>
           </div>
           <div class="mb-3">
             <label>Email</label>
-            <input type="email" name="email" class="form-control" placeholder="mario.rossi@email.com" value="<?php echo htmlspecialchars($user->getEmail()); ?>">
+            <input type="email" name="email" class="form-control" placeholder="mario.rossi@email.com" value="<?php echo htmlspecialchars($user->getEmail()); ?>" required>
           </div>
           <button type="submit" class="btn btn-primary w-100">Salva Modifiche</button>
         </form>
@@ -48,15 +48,15 @@ $authController->getDeleteModal();
         <form id="changePasswordForm" action="/user/update_password" method="POST">
           <div class="mb-3">
             <label>Vecchia Password</label>
-            <input type="password" name="old_password" id="old_password" class="form-control" placeholder="****" required>
+            <input type="password" name="old_password" id="old_password" class="form-control" placeholder="********" required>
           </div>
           <div class="mb-3">
             <label>Nuova Password</label>
-            <input type="password" name="password" id="password" class="form-control" placeholder="****" required>
+            <input type="password" name="password" id="password" class="form-control" placeholder="********" required>
           </div>
           <div class="mb-3">
             <label>Conferma Password</label>
-            <input type="password" name="password_confirm" id="password_confirm" class="form-control mb-1" placeholder="****" required>
+            <input type="password" name="password_confirm" id="password_confirm" class="form-control mb-1" placeholder="********" required>
             <span id="password_error" class="text-danger"></span>
           </div>
           <button type="submit" id="submit_btn" class="btn btn-warning w-100">Aggiorna Password</button>

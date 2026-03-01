@@ -9,11 +9,11 @@
 
   <hr class="text-secondary">
 
-  <a href="/user/home" <?php if($url === "/user/home"){echo "class='active'";} ?>>🏠 Dashboard</a>
-  <a href="/user/storico" <?php if($url === "/user/storico" /*todo aggiungere gli altri url*/){echo "class='active'";} ?>>📊 Storico</a>
-  <a href="/user/impostazioni" <?php if($url === "/user/impostazioni"){echo "class='active'";} ?>>⚙️ Impostazioni</a>
+  <a href="/user/home" <?php if($url === "/user/home"){echo "class='active'";} ?>><i class="fa-regular fa-house"></i> Home</a>
+  <a href="/user/storico" <?php if($url === "/user/storico" || str_contains($url,"/user/storico_anno") || str_contains($url,"/user/spese_mensili")){echo "class='active'";} ?>><i class="fa-solid fa-chart-column"></i> Storico</a>
+  <a href="/user/impostazioni" <?php if($url === "/user/impostazioni"){echo "class='active'";} ?>><i class="fa-solid fa-gear"></i> Impostazioni</a>
 
   <div class="mt-auto">
-    <a href="/logout" class="logout">🚪 Logout</a>
+    <a href="/logout" class="logout"><i class="fa-solid fa-door-closed"></i> Logout</a>
   </div>
 </div>

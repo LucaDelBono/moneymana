@@ -8,7 +8,8 @@ $user = $authController->getAuthUser();
 $idCurrentMonth = MONTHS[date("n")];
 $month = $monthController->getById($idCurrentMonth);
 $year = date("Y");
-$expenses = $expenseController->getAllByIdMonthAndIdYear($month->getId(), $year);
+$idYear = YEARS[$year];
+$expenses = $expenseController->getAllByIdMonthAndIdYear($month->getId(), $idYear);
 $total = 0;
 ?>
 <?php 
@@ -20,7 +21,7 @@ $expenseController->getDeleteModal();
 
 <div class="content">
   <h2>Gestione Mese Corrente</h2>
-  <p id="meseCorrente"><?php ?></p>
+  <p id="meseCorrente">Mese: <?php echo htmlspecialchars($month->getName()); ?></p>
 
   <div class="card mb-4 shadow">
     <div class="card-body">
