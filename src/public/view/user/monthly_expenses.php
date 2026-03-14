@@ -37,15 +37,22 @@ echo flashMessage();
     <div class="card-body">
       <h5>Aggiungi Spesa</h5>
       <form action="/user/spese_mensili/insert" method="POST" class="row g-3">
-        <input type="hidden" name="month" value="<?php echo htmlspecialchars($month->getId()); ?>">
-        <input type="hidden" name="year" value="<?php echo htmlspecialchars($year); ?>">
-        <div class="col-md-6">
-          <input type="text" name="description" class="form-control" placeholder="Descrizione" required>
+        <input type="hidden" name="month" id="month" value="<?php echo htmlspecialchars($month->getId()); ?>">
+        <input type="hidden" name="year" id="year" value="<?php echo htmlspecialchars($year); ?>">
+        <div class="col-md-5">
+          <label for="description">Descrizione</label>
+          <input type="text" name="description" class="form-control" placeholder="Motivo della spesa..." required>
+        </div>
+        <div class="col-md-2">
+          <label for="import">Importo</label>
+          <input type="number" name="import" class="form-control" placeholder="€" required step="0.01">
+        </div>
+        <div class="col-md-2">
+          <label for="day">Giorno</label>
+          <select name="day" id="day" class="form-control" required></select>
         </div>
         <div class="col-md-3">
-          <input type="number" name="import" class="form-control" placeholder="Importo" required step="0.01">
-        </div>
-        <div class="col-md-3">
+          <label for=""></label>
           <button type="submit" class="btn btn-primary w-100">Aggiungi</button>
         </div>
       </form>
@@ -63,8 +70,7 @@ echo flashMessage();
           <button class="btn btn-sm btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteExpenseModal" 
                   data-id="<?php echo htmlspecialchars($expense->getId()); ?>"
                   data-month="<?php echo htmlspecialchars($month->getId()); ?>"
-                  data-year="<?php echo htmlspecialchars($year); ?>"
-                  >
+                  data-year="<?php echo htmlspecialchars($year); ?>">
             Elimina
           </button>
         </div>
@@ -77,5 +83,4 @@ echo flashMessage();
     <h5>Totale: €<span id="totale"><?php echo htmlspecialchars($total)?></span></h5>
   </div>
 </div>
-
 <?php require_once __DIR__ . "/../partials/footer.php"; ?>

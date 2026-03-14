@@ -141,4 +141,24 @@ addEventListener("DOMContentLoaded", (event) => {
         $("#deleteExpenseModal #month").val(month);
         $("#deleteExpenseModal #year").val(year);
     });
+
+    window.refreshDays = function () {
+        const month = document.getElementById("month").value;
+        const year = document.getElementById("year").value;
+        const days = new Date(year, month, 0).getDate();
+
+        const daysSelect = document.getElementById("day");
+        daysSelect.innerHTML = "";
+
+        for (let i = 1; i <= days; i++) {
+            const option = document.createElement("option");
+            option.value = i;
+            option.textContent = i;
+            daysSelect.appendChild(option);
+        }
+    }
+
+    if (document.getElementById("day")) {
+        refreshDays();
+    }
 })
