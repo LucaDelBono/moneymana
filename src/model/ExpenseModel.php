@@ -11,11 +11,12 @@ class ExpenseModel {
     }
 
     public function insert(array $data) :int{
-        $query = $this->db->prepare("INSERT INTO expenses(id_user, id_year, id_month, description, import) VALUES (:id_user, :id_year, :id_month, :description, :import)");
+        $query = $this->db->prepare("INSERT INTO expenses(id_user, id_year, id_month, day, description, import) VALUES (:id_user, :id_year, :id_month, :day, :description, :import)");
         $params = [
             "id_user" => $data["id_user"],
             "id_year" => $data["id_year"],
             "id_month" => $data["id_month"],
+            "day" => $data["day"],
             "description" => $data["description"],
             "import" => $data["import"]
         ];
@@ -40,7 +41,7 @@ class ExpenseModel {
     }
 
     public function getAllByIdMonthAndIdYear(int $idMonth, int $idYear){
-        $query = $this->db->prepare("SELECT * FROM expenses WHERE id_month = :id_month AND id_year = :id_year");
+        $query = $this->db->prepare("SELECT * FROM expenses WHERE id_month = :id_month AND id_year = :id_year ORDER BY day ASC");
         $params = [
             "id_month" => $idMonth,
             "id_year" => $idYear

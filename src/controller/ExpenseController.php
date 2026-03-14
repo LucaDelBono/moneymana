@@ -25,6 +25,7 @@ class ExpenseController {
                     "id_user" => $_SESSION["id"],
                     "id_year" => $idYear,
                     "id_month" => $idMonth,
+                    "day" => $_POST["day"],
                     "description" => $_POST["description"],
                     "import" => $_POST["import"]
                 ];

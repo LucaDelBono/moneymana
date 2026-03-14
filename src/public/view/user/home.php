@@ -19,31 +19,39 @@ echo flashMessage();
 $expenseController->getDeleteModal();
 ?>
 
-<div class="content">
-  <h2>Gestione Mese Corrente</h2>
-  <p id="meseCorrente">Mese: <?php echo htmlspecialchars($month->getName()); ?></p>
+<div class="py-4 content">
+  <h2 class="mb-4">
+    Gestione Mese <?php echo htmlspecialchars($month->getName()) . " " . htmlspecialchars($year); ?>
+  </h2>
 
-  <div class="card mb-4 shadow">
+  <div class="card mb-4 shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h5 class="mb-0">Aggiungi Spesa</h5>
+    </div>
+
     <div class="card-body">
-      <h5>Aggiungi Spesa</h5>
-      <form action="/user/spese_mensili/insert" method="POST" class="row g-3">
-        <input type="hidden" name="month" id="month" value="<?php echo htmlspecialchars($month->getId()); ?>">
-        <input type="hidden" name="year" id="year" value="<?php echo htmlspecialchars($year); ?>">
+      <form action="/user/spese_mensili/insert" method="POST" class="row g-3 align-items-end">
+        <input type="hidden" name="month" value="<?php echo htmlspecialchars($month->getId()); ?>">
+        <input type="hidden" name="year" value="<?php echo htmlspecialchars($year); ?>">
         <div class="col-md-5">
-          <label for="description">Descrizione</label>
+          <label class="form-label">Descrizione</label>
           <input type="text" name="description" class="form-control" placeholder="Motivo della spesa..." required>
         </div>
         <div class="col-md-2">
-          <label for="import">Importo</label>
-          <input type="number" name="import" class="form-control" placeholder="€" required step="0.01">
+          <label class="form-label">Importo</label>
+          <div class="input-group">
+            <span class="input-group-text">€</span>
+            <input type="number" name="import" class="form-control" required step="0.01">
+          </div>
         </div>
         <div class="col-md-2">
-          <label for="day">Giorno</label>
-          <select name="day" id="day" class="form-control" required></select>
+          <label class="form-label">Giorno</label>
+          <select name="day" id="day" class="form-select" required></select>
         </div>
         <div class="col-md-3">
-          <label for=""></label>
-          <button type="submit" class="btn btn-primary w-100">Aggiungi</button>
+          <button type="submit" class="btn btn-primary w-100">
+            + Aggiungi
+          </button>
         </div>
       </form>
     </div>
@@ -51,26 +59,57 @@ $expenseController->getDeleteModal();
 
   <div id="speseList">
     <?php 
-    foreach($expenses as $expense){ 
+    $total = 0;
+    if(empty($expenses)){
       ?>
-      <div class="card spesa-card shadow">
+      <div class="alert alert-light text-center">
+        Nessuna spesa registrata per questo mese
+      </div>
+      <?php
+    }
+
+    foreach($expenses as $expense){
+      $total += $expense->getImport();
+      ?>
+      <div class="card spesa-card shadow-sm mb-2">
         <div class="card-body d-flex justify-content-between align-items-center">
-          <span><?php echo htmlspecialchars($expense->getDescription()) . " - " . htmlspecialchars(round( $expense->getImport(),2)) . "€"; ?></span>
-          <button class="btn btn-sm btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteExpenseModal" 
-                  data-id="<?php echo htmlspecialchars($expense->getId()); ?>"
-                  data-month="<?php echo htmlspecialchars($month->getId()); ?>"
-                  data-year="<?php echo htmlspecialchars($year); ?>"
-                  >
-            Elimina
-          </button>
+          <div>
+            <div class="fw-semibold">
+              <?php echo htmlspecialchars($expense->getDescription()); ?>
+            </div>
+            <small class="text-muted">
+              <?php echo htmlspecialchars($expense->getDay()) . " " . htmlspecialchars($month->getName()); ?>
+            </small>
+          </div>
+          <div class="d-flex align-items-center gap-3">
+            <span class="fw-bold text-success">
+              €<?php echo htmlspecialchars(round($expense->getImport(),2)); ?>
+            </span>
+            <button 
+              class="btn btn-sm btn-outline-danger"
+              data-bs-toggle="modal"
+              data-bs-target="#deleteExpenseModal"
+              data-id="<?php echo htmlspecialchars($expense->getId()); ?>"
+              data-month="<?php echo htmlspecialchars($month->getId()); ?>"
+              data-year="<?php echo htmlspecialchars($year); ?>">
+              Elimina
+            </button>
+          </div>
         </div>
       </div>
       <?php
     }?>
   </div>
 
-  <div class="card shadow mt-3 p-3">
-    <h5>Totale: €<span id="totale">0.00</span></h5>
+  <div class="card shadow-sm mt-4 border-0 bg-light">
+    <div class="card-body d-flex justify-content-between align-items-center">
+      <h5 class="mb-0 text-muted">
+        Totale Spese
+      </h5>
+      <h4 class="mb-0 fw-bold text-danger">
+        €<span id="totale"><?php echo htmlspecialchars(round($total,2)); ?></span>
+      </h4>
+    </div>
   </div>
 </div>
 

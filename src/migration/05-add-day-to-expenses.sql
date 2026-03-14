@@ -1,0 +1,1 @@
+ALTER TABLE expenses ADD COLUMN day INT NOT NULL AFTER id_month;
